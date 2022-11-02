@@ -14,13 +14,13 @@ import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes = [
     { path: 'cursos', 
-        loadChildren: 'app/cursos/cursos.module#CursosModule',
+        loadChildren:() => import('./cursos/cursos.module').then(mod=>mod.CursosModule),title:"cursos",
         canActivate: [AuthGuard],
         canActivateChild: [CursosGuard],
         canLoad: [AuthGuard]
     },
     { path: 'alunos',
-        loadChildren: 'app/alunos/alunos.module#AlunosModule',
+        loadChildren:() => import('./alunos/alunos.module').then(mod=>mod.AlunosModule),title:"cursos",
         canActivate: [AuthGuard],
         //canActivateChild: [AlunosGuard]
         canLoad: [AuthGuard]
